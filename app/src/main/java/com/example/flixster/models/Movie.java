@@ -9,7 +9,9 @@ public class Movie {
     public String title;
     public String overview;
     public String posterPath; // only path
+    public String genre;
     public double voteAverage;
+    public Integer id;
 
 
     public Movie(JSONObject object) throws JSONException {
@@ -17,6 +19,7 @@ public class Movie {
         overview = object.getString("overview");
         posterPath = object.getString("poster_path");
         voteAverage = object.getDouble("vote_average");
+        id = object.getInt("id");
     }
 
     //no arg constructor
@@ -38,5 +41,9 @@ public class Movie {
 
     public String getPosterPath() {
         return posterPath;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

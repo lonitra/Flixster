@@ -18,6 +18,8 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
@@ -53,7 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         Movie movie = movies.get(i);
         viewHolder.tvTitle.setText(movie.getTitle());
         viewHolder.tvOverview.setText(movie.getOverview());
-        //TODO--set image
+        //set image
         String imageUrl = config.getImageUrl(config.getPosterSize(), movie.getPosterPath());
         Glide.with(context)
                 .load(imageUrl)
@@ -72,15 +74,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView ivPosterImage;
-        TextView tvTitle;
-        TextView tvOverview;
+        @BindView(R.id.ivPosterImage) ImageView ivPosterImage;
+        @BindView(R.id.tvTitle) TextView tvTitle;
+        @BindView(R.id.tvOverview) TextView tvOverview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivPosterImage = (ImageView) itemView.findViewById(R.id.ivPosterImage);
-            tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
-            tvOverview = (TextView) itemView.findViewById(R.id.tvOverview);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 
