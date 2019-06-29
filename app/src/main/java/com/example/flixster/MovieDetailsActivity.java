@@ -44,9 +44,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
         client = new AsyncHttpClient();
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent(); //grabs Intent sent from MovieAdapter.java
 
-        movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
+        movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName())); //unwraps movie object
         Log.d("MovieDetailsActivity", String.format("Showing details for %s", movie.getTitle()));
 
         tvOverview.setText(movie.getOverview());
@@ -63,19 +63,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
         float voteAverage = (float) movie.getVoteAverage();
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
 
+        //sets up onClickListener for when user clicks on movie poster
         ivPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getConfiguration();
+                startVideo();
             }
         });
 
     }
 
-    //gets configuration from api
-    private void getConfiguration() {
+    //Sets up url to grab movie ID and sends to MovieTrailerActivity.java
+    private void startVideo() {
         String url = "https://api.themoviedb.org/3/movie/" + movie.getId() + "/videos";
-        //assign request parameters (values that get appended to url)
         RequestParams params = new RequestParams();
         params.put("api_key", getString(R.string.api_key)); //call getString bc value api_key is numeric
         client.get(url, params, new JsonHttpResponseHandler() {
@@ -84,13 +84,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 try {
                     JSONArray results = response.getJSONArray("results");
                     JSONObject obj = results.getJSONObject(2);
-                    key = obj.getString("key");
-
+                    key = obj.getString("key"); //grabs the string labeled "key" in the object
+                    //send Intent to MovieTrailerActivity.java
                     Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                     intent.putExtra("video_key", key);
                     MovieDetailsActivity.this.startActivity(intent);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    logError("Failed parsing movie ID", e, true);
                 }
 
             }

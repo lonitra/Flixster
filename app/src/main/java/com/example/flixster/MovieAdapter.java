@@ -24,7 +24,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     ArrayList<Movie> movies;
-    Config config;
+    Config config; //path to image
     Context context;
 
     public static final String INFO_TRANSFER = Movie.class.getSimpleName();
@@ -72,6 +72,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         return movies.size();
     }
 
+    //handles what's inside the ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.ivPosterImage) ImageView ivPosterImage;
@@ -91,9 +92,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             if(position != RecyclerView.NO_POSITION) {
                 Movie movie = movies.get(position);
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
-                intent.putExtra(INFO_TRANSFER, Parcels.wrap(movie));
+                intent.putExtra(INFO_TRANSFER, Parcels.wrap(movie)); //packages Movie object that was clicked on
                 String imageUrl = config.getImageUrl(config.getPosterSize(), movie.getPosterPath());
-                intent.putExtra(IMAGE_TRANSFER, imageUrl);
+                intent.putExtra(IMAGE_TRANSFER, imageUrl); //packages full poster path url of Movie
                 context.startActivity(intent);
             }
         }

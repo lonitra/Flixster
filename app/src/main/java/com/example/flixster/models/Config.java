@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+//This class sets up the poster path to the movie image including the desired size of the poster
 public class Config {
     String imageBaseUrl;
     String posterSize;

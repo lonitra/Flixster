@@ -43,13 +43,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        //initialization of client
         client = new AsyncHttpClient();
         movies = new ArrayList<Movie>();
         adapter = new MovieAdapter(movies);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
         rvMovies.setAdapter(adapter);
-        getConfiguration(); //method called here bc first thing we wanna do
+        getConfiguration();
 
     }
 

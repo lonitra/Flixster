@@ -4,11 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+//Defines Movie object
 @Parcel
 public class Movie {
     public String title;
     public String overview;
-    public String posterPath; // only path
+    public String posterPath;
     public String genre;
     public double voteAverage;
     public Integer id;
