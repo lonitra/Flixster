@@ -2,7 +2,7 @@
 
 **Flixster** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: **15** hours spent in total so far
+Time spent: **15** hours 
 
 ## User Stories
 
@@ -36,7 +36,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-The most challenging thing I encountered while doing this project was understanding how activities interact with one another through Intent, understanding APIs with how they work, and parsing with JSON
+The most challenging thing I encountered while doing this project was understanding how activities interact with one another through Intent, understanding APIs with how they work, and parsing with JSON. Through strugging with these concepts in the project, I feel that I learned a lot and am more confident in my understanding.
 
 ## Open-source libraries used
 
